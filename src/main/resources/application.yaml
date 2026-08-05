@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: SimpleMQ
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+  datasource:
+    url: jdbc:mysql://localhost:3306/Springboot?createDatabaseIfNotExist=true
+    username: root
+    password: admin
+resilience4j:
+  circuitbreaker:
+    instances:
+      mqCircuitBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+
+
+
+
